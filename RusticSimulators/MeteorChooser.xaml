@@ -1,0 +1,105 @@
+﻿<Page x:Class="RusticSimulators.MeteorChooser"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:RusticSimulators"
+      mc:Ignorable="d" 
+      d:DesignHeight="750" d:DesignWidth="1200"
+      Title="MeteorChooser">
+
+    <Canvas>
+
+        <Canvas.Background>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                <GradientStop Color="#001A4D" Offset="0"></GradientStop>
+                <GradientStop Color="#002A7B" Offset="0.5"></GradientStop>
+                <GradientStop Color="#0037A2" Offset="1"></GradientStop>
+            </LinearGradientBrush>
+        </Canvas.Background>
+
+        <Image Source="stars.png" Height="750" Width="1200"></Image> 
+        <Image Source="fire.png" Height="604" Width="422" RenderTransformOrigin="0.5,0.5" Canvas.Left="56" Canvas.Top="-150">
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-55.71"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Image.RenderTransform>
+        </Image>
+
+        <Ellipse Width="230" Height="230" Canvas.Top="120" Canvas.Left="310" Stroke="Black" RenderTransformOrigin="0.5,0.5" Fill="{Binding ElementName=cuadro, Path=Fill}">
+            <Ellipse.RenderTransform>
+                <RotateTransform x:Name="meteorito"></RotateTransform>
+            </Ellipse.RenderTransform>
+            <Ellipse.Triggers>
+                <EventTrigger RoutedEvent="Loaded">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="(Ellipse.RenderTransform).(RotateTransform.Angle)" To="-360" Duration="0:0:0.5" RepeatBehavior="Forever" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Ellipse.Triggers>
+        </Ellipse>
+        <Rectangle Width="140" Height="140" Canvas.Top="220" Canvas.Left="900" Stroke="Black" x:Name="cuadro">
+            <Rectangle.Style>
+                <Style TargetType="Rectangle">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsChecked, ElementName=roca}" Value="True">
+                            <Setter Property="Fill">
+                                <Setter.Value>
+                                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                        <GradientStop Color="#3F2F18" Offset="0"></GradientStop>
+                                        <GradientStop Color="#76592E" Offset="0.3"></GradientStop>
+                                        <GradientStop Color="#63410E" Offset="0.6"></GradientStop>
+                                        <GradientStop Color="#422902" Offset="1"></GradientStop>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding IsChecked, ElementName=hielo}" Value="True">
+                            <Setter Property="Fill">
+                                <Setter.Value>
+                                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                        <GradientStop Color="#DFFBFF" Offset="0"></GradientStop>
+                                        <GradientStop Color="#C9F8FF" Offset="0.3"></GradientStop>
+                                        <GradientStop Color="#EBFDFF" Offset="0.6"></GradientStop>
+                                        <GradientStop Color="#9EF5FF" Offset="1"></GradientStop>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding IsChecked, ElementName=metal}" Value="True">
+                            <Setter Property="Fill">
+                                <Setter.Value>
+                                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                        <GradientStop Color="#4D4D4D" Offset="0"></GradientStop>
+                                        <GradientStop Color="#909090" Offset="1"></GradientStop>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Rectangle.Style>
+        </Rectangle>
+        <TextBlock Style="{StaticResource textoMeteorChooser}" Canvas.Top="90" Canvas.Left="800">Elige el elemento:</TextBlock>
+        <Viewbox HorizontalAlignment="Left" VerticalAlignment="Center" Canvas.Left="870" Canvas.Top="400" Height="50" Width="301">
+            <RadioButton Content="Roca" Foreground="White" GroupName="Grupo1" x:Name="roca" FontWeight="Bold" IsChecked="True"/>
+        </Viewbox>
+        <Viewbox HorizontalAlignment="Left" VerticalAlignment="Center" Canvas.Left="870" Canvas.Top="470" Height="50" Width="301">
+            <RadioButton Content="Hielo" Foreground="White" GroupName="Grupo1" x:Name="hielo" FontWeight="Bold"/>
+        </Viewbox>
+        <Viewbox HorizontalAlignment="Left" VerticalAlignment="Center" Canvas.Left="870" Canvas.Top="540" Height="50" Width="301">
+            <RadioButton Content="Metal" Foreground="White" GroupName="Grupo1" x:Name="metal" FontWeight="Bold"/>
+        </Viewbox>
+
+        <Border Grid.Column="1" Grid.Row="5" HorizontalAlignment="Center" CornerRadius="6" BorderThickness="6" BorderBrush="Gray" Canvas.Top="610" Canvas.Left="250">
+            <Button  Style="{StaticResource botonRedondo}" Click="Button_Click">Lanzar</Button>
+        </Border>
+
+    </Canvas>
+</Page>

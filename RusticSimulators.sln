@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29609.76
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RusticSimulators", "RusticSimulators\RusticSimulators.csproj", "{A476AAAA-75D9-454A-B3FE-70EF9AAE05C9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A476AAAA-75D9-454A-B3FE-70EF9AAE05C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A476AAAA-75D9-454A-B3FE-70EF9AAE05C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A476AAAA-75D9-454A-B3FE-70EF9AAE05C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A476AAAA-75D9-454A-B3FE-70EF9AAE05C9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D5F6AF23-B177-4920-8135-B5198CB502C3}
+	EndGlobalSection
+EndGlobal

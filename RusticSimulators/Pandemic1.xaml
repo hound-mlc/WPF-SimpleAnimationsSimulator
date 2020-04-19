@@ -1,0 +1,95 @@
+﻿<Page x:Class="RusticSimulators.Pandemic1"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:RusticSimulators"
+      mc:Ignorable="d" 
+      d:DesignHeight="750" d:DesignWidth="1200"
+      Title="Pandemic1">
+    <Page.Background>
+        <RadialGradientBrush>
+            <GradientStop Color="Black" Offset="1.5"></GradientStop>
+            <GradientStop Color="DarkRed" Offset="0.4"></GradientStop>
+            <GradientStop Color="Red" Offset="0"></GradientStop>
+        </RadialGradientBrush>
+    </Page.Background>
+
+    <Grid Margin="50,30,50,30">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.4*"/>
+            <RowDefinition Height="0.4*"/>
+            <RowDefinition/>
+            <RowDefinition Height="0.4*"/>
+            <RowDefinition Height="0.4*"/>
+            <RowDefinition Height="0.25*"/>
+        </Grid.RowDefinitions>
+        
+        <Border Grid.Column="1" Grid.Row="5" HorizontalAlignment="Center" CornerRadius="6" BorderThickness="6" BorderBrush="Gray">
+            <Button  Style="{StaticResource botonRedondo}" Click="Button_Click">Propagar</Button>
+        </Border>
+
+        <Image Source="virus.png" x:Name="virus" Grid.Column="0" Grid.Row="2" Opacity="0.5" MouseLeftButtonDown="virus_MouseLeftButtonDown_1">
+            <Image.Triggers>
+                <EventTrigger RoutedEvent="Image.MouseLeftButtonDown">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0.5" To="1" Duration="0:0:1" BeginTime="0:0:0"/>
+                            <DoubleAnimation Storyboard.TargetName="hongo" Storyboard.TargetProperty="Opacity" From="1" To="0.25" Duration="0:0:1" BeginTime="0:0:0"/>
+                            <DoubleAnimation Storyboard.TargetName="bacteria" Storyboard.TargetProperty="Opacity" From="1" To="0.25" Duration="0:0:1" BeginTime="0:0:0"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Image.Triggers>
+        </Image>
+        <Image Source="bacteria.png" x:Name="bacteria" Grid.Column="1" Grid.Row="2" Opacity="0.5" MouseLeftButtonDown="bacteria_MouseLeftButtonDown">
+            <Image.Triggers>
+                <EventTrigger RoutedEvent="Image.MouseLeftButtonDown">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0.5" To="1" Duration="0:0:1" BeginTime="0:0:0"/>
+                            <DoubleAnimation Storyboard.TargetName="virus" Storyboard.TargetProperty="Opacity" From="1" To="0.25" Duration="0:0:1" BeginTime="0:0:0"/>
+                            <DoubleAnimation Storyboard.TargetName="hongo" Storyboard.TargetProperty="Opacity" From="1" To="0.25" Duration="0:0:1" BeginTime="0:0:0"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Image.Triggers>
+        </Image>
+        <Image Source="hongo.png" x:Name="hongo" Grid.Column="2" Grid.Row="2" Opacity="0.5" MouseLeftButtonDown="hongo_MouseLeftButtonDown">
+            <Image.Triggers>
+                <EventTrigger RoutedEvent="Image.MouseLeftButtonDown">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0.5" To="1" Duration="0:0:1" BeginTime="0:0:0"/>
+                            <DoubleAnimation Storyboard.TargetName="virus" Storyboard.TargetProperty="Opacity" From="1" To="0.25" Duration="0:0:1" BeginTime="0:0:0"/>
+                            <DoubleAnimation Storyboard.TargetName="bacteria" Storyboard.TargetProperty="Opacity" From="1" To="0.25" Duration="0:0:1" BeginTime="0:0:0"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Image.Triggers>
+        </Image>
+        <TextBlock Text="Crea tu patógeno" Grid.Row="0" Grid.ColumnSpan="3" HorizontalAlignment="Center" Style="{StaticResource textPandemic}"></TextBlock>
+        <TextBlock Text="Nombre: " Grid.Row="1" HorizontalAlignment="Center" Style="{StaticResource textPandemic}"></TextBlock>
+        <TextBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Margin="20" FontSize="28" FontWeight="Bold" x:Name="textNombre"></TextBox>
+        <TextBlock x:Name="lbl1" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="3" HorizontalAlignment="Center" Style="{StaticResource textNombreEnfermedad}"></TextBlock>
+        
+        <Viewbox HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Grid.Row="4" Height="50" Width="241">
+            <RadioButton Content="Contagio por aire" Foreground="White" IsChecked="True" GroupName="Grupo1" x:Name="aire"/>
+        </Viewbox>
+        <Viewbox HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Grid.Row="4" Height="60" Width="301">
+            <RadioButton Content="Contagio por contacto" Foreground="White" GroupName="Grupo1" x:Name="contacto"/>
+        </Viewbox>
+        <Viewbox HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="2" Grid.Row="4" Height="50" Width="301">
+            <RadioButton Content="Contagio por animales" Foreground="White" GroupName="Grupo1" x:Name="animales"/>
+        </Viewbox>
+
+    </Grid>
+    
+    
+</Page>
